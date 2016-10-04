@@ -24,3 +24,6 @@ You should run this command in the root folder of this repo as follows:
 ```shell
 docker-compose up -d
 ```
+
+### Step 3: Initial login
+Initial login detials: `username`:`admin` and `password`:`password`
