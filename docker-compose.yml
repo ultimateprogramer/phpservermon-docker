@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  server_monitor_web:
+    build: ./web
+    container_name: server_monitor_web
+    ports:
+      - "80:80"
+    volumes:
+      - ./phpservermon:/var/www/html
+    depends_on:
+      - server_monitor_mysql
+
+  server_monitor_mysql:
+    image: mysql:5.6
+    container_name: server_monitor_mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: server_monitor
+      MYSQL_USER: monitor
+      MYSQL_PASSWORD: monitor
+    volumes:
+      - ./mysql/dump:/docker-entrypoint-initdb.d/
+      - /tmp/ServerMonitorMySQLData:/var/lib/mysql
